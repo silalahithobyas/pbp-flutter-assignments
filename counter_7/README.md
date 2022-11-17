@@ -1,4 +1,4 @@
-# counter_7
+# Tugas 7 - counter_7
 
 ## Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya!
 Stateless widget merupakan widget berupa text, data dan lain-lain yang tidak akan pernah berubah. Tidak akan pernah berubah berarti perubahan yang dilakukan oleh
@@ -34,3 +34,39 @@ Const harus menginisialisasi variabel sebelum compiling/runtime. Const tidak bis
 2. Membuat method _decrementCounter yang berfungsi untuk mengurangi nilai pada counter. Namun, jika nilai pada counter sudah 0 pada saat method tersebut dijalankan, maka counter tetap 0 bukan -1. Proses decrement variabel dilakukan dalam fungsi setState().
 3. Pada body, di bagian childrennya ditambahkan widget dan conditional untuk handle tampilan tulisan GANJIL dan GENAP.
 4. Membuat FloatingActionButton yang akan menampilkan 2 tombol yakni decrement dan increment dan menambahkan onPressed agar ketika button dipencet akan terhubung ke method yang seharusnya
+
+
+# Tugas 8 - Flutter Form
+
+## Jelaskan perbedaan Navigator.push dan Navigator.pushReplacement!
+- Navigator.push            : Ketika menggunakan Navigator.push, page baru akan dipush ke stack dan menimpa page lama, sehingga route ke page lama tetap ada dan kita bisa kembali ke page lama.
+- Navigator.pushReplacement : Ketika menggunakan Navigator.pushReplacement, page lama seolah-olah di pop terlebih dahulu, lalu page baru akan di-push. Maka, route ke page lama akan dihapus dan digantikan oleh page baru.
+
+## Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya!
+1. Drawer           : Panel pilihan untuk perpindahan halaman
+2. Form             : Container untuk tempat menampung input dari user
+3. TextFormField    : Menerima input text pada form
+4. TextButton       : Membuat button
+5. TextStyle        : Mengatur style untuk text
+6. Column           : Mengatur widget dengan format vertical
+7. Row              : Mengatur widget dengan format horizontal
+8. DropDownButton   : Fields untuk memilih input
+9. ListTile         : Act sebagai wadah untuk menampung widget lain
+10. Navigator       : Untuk perpindahan ke page lain
+
+## Sebutkan jenis-jenis event yang ada pada Flutter (contoh: onPressed)!
+1. onPressed        : Terpanggil saat button ditekan
+2. onLongPress      : Terpanggil saat button ditekan lama
+3. onTap            : Terpanggil saat salah satu popup menu ditekan dan akan menjalankan actions yang telah ditentukan 
+4. onFocusChanged   : Terpanggil saat focus berganti
+5. onSaved          : Terpanggil dengan final value saat form telah di save via FormState
+6. onHover          : Terpanggil saat pointer masuk ke button response area
+7. onChanged        : Terpanggil saat user meninisiasi sebuah perubahan kepada value TextField
+
+## Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter!
+Prinsip kerja navigator memiliki kemiripan dengan struktur data stack. Misalnya suatu layar ditampilkan maka layar tersebut berada di posisi top pada stack tersebut. Ketika kita ingin kembali pada layar sebelumnya, maka sistem melakukan pop pada stack tersebut (top akan terhapus) sehingga di tampilkanlah layar sebelumnya.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas!Menambahkan drawer menu dan navigasi
+1. Routing pada widget drawner
+2. Membuat form pada bagian body yang berisi textfield, dropdown, serta tombol submit di file tambah_budget
+3. Menampilkan data yang telah di input pada halaman data_budget
