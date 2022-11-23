@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/data_budget.dart';
+import 'package:counter_7/page/mywatchlistPage.dart';
+
 
 class TambahBudgetPage extends StatefulWidget {
     const TambahBudgetPage({super.key});
@@ -62,11 +65,20 @@ List<String> listJenis = ['Pengeluaran','Pemasukan'];
               );
             },
           ),
+          ListTile(
+            title: const Text('My Watchlist'),
+            onTap: () {
+              // Route menu ke halaman watchlist
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyWatchlistPage()),
+              );
+            },          
+          ),                              
         ],
       ),
     ),
-
-            body: Form(
+    body: Form(
         key: _formKey,
          child: SingleChildScrollView(
           child: Container(
@@ -147,7 +159,7 @@ List<String> listJenis = ['Pengeluaran','Pemasukan'];
                     ),
                 ),
 
-                // Make dropdown button untuk Jenis
+                // Make dropdown button untuk Jenis Budget
                 ListTile(
                 title: const Text(
                     'Jenis',
