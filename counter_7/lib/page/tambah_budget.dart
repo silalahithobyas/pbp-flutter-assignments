@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:counter_7/main.dart';
-import 'package:counter_7/data_budget.dart';
+import 'package:counter_7/page/data_budget.dart';
 import 'package:counter_7/page/mywatchlistPage.dart';
 
 
@@ -36,7 +36,7 @@ List<String> listJenis = ['Pengeluaran','Pemasukan'];
                 padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
               ),
           ListTile(
-            title: const Text('Counter'),
+            title: const Text('counter_7'),
             onTap: () {
               // Routing menu ke halaman utama
               Navigator.pushReplacement(
@@ -68,12 +68,13 @@ List<String> listJenis = ['Pengeluaran','Pemasukan'];
           ListTile(
             title: const Text('My Watchlist'),
             onTap: () {
-              // Route menu ke halaman watchlist
+              // Route menu ke halaman My Watchlist
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchlistPage()),
+                MaterialPageRoute(
+                    builder: (context) => const MyWatchlistPage()),
               );
-            },          
+            },
           ),                              
         ],
       ),

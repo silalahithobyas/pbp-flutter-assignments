@@ -1,131 +1,231 @@
-import 'package:counter_7/tambah_budget.dart';
-import 'package:counter_7/data_budget.dart';
+import 'package:counter_7/page/tambah_budget.dart';
+import 'package:counter_7/page/data_budget.dart';
 import 'package:counter_7/main.dart';
-import 'package:counter_7/page/mywatchlistPage.dart';
-import 'package:counter_7/model/mywatchlist.dart';
-
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:intl/intl.dart';
+import 'package:counter_7/page/mywatchlistPage.dart';
 
-class MyWatchlistDetailPage extends StatelessWidget {
-  const MyWatchlistDetailPage({ super.key, required this.watchlist });
+class DetailWatchlistPage extends StatefulWidget {
+  const DetailWatchlistPage({super.key, required this.fields});
 
-  final MyWatchlist watchlist;
+  final Map<String, dynamic> fields;
+  final String title = "Detail";
 
   @override
+  State<DetailWatchlistPage> createState() => _DetailWatchlistPageState();
+}
+
+class _DetailWatchlistPageState extends State<DetailWatchlistPage> {
+  @override
   Widget build(BuildContext context) {
-      return Scaffold(
-          appBar: AppBar(
-              title: const Text('Detail'),
-          ),
-          drawer: Drawer(
-              child: Column(
-                children: [
-                  // Add clickable menu
-                  ListTile(
-                    title: const Text('counter_7'),
-                    onTap: () {
-                      // Routing menu ke homepage
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home Page',)),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Tambah Budget'),
-                    onTap: () {
-                      // Routing menu ke form page
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TambahBudgetPage()),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Data Budget'),
-                    onTap: () {
-                      // Routing menu ke halaman data budget
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const DataBudgetPage()),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('My Watchlist'),
-                    onTap: () {
-                      // Routing menu ke halaman watchlist
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyWatchlistPage()),
-                      );
-                    },
-                  ),
-                ],
-              ),
-          ),
-          body: Container( 
-            margin: const EdgeInsets.fromLTRB(5, 10, 5, 15),
-            child: Stack(
-              children: [
-                ListView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            // Menambahkan clickable menu
+            ListTile(
+              title: const Text('counter_7'),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage(title:"Homepage")),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                // Route menu ke halaman tambah budget
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TambahBudgetPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Data Budget'),
+              onTap: () {
+                // Route menu ke halaman data budget
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DataBudgetPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('My Watchlist'),
+              onTap: () {
+                // Route menu ke halaman My Watchlist
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyWatchlistPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
                   children: [
-                    Center(
-                      child:Text(
-                        watchlist.fields.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28.0,
-                        )
-                      )
-                    ),                  
-                    const SizedBox(height: 8,),
-                    RichText(
-                      text: TextSpan(
-                        // Note: Styles for TextSpans must be explicitly defined.
-                        // Child text spans will inherit styles from parent
-                        style: const TextStyle(
-                          color: Colors.black,
-                          height: 1.9,
+                    Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15, top: 10),
+                          child: Text(
+                            widget.fields["title"],
+                            style: const TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5, top: 5),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                const TextSpan(
+                                    text: 'Release Date: ',
+                                    style:
+                                    TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(text: widget.fields["release_date"]),
+                              ],
+                            ),
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5, top: 5),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                const TextSpan(
+                                    text: 'Rating: ',
+                                    style:
+                                    TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text: "${widget.fields['rating']}/10"),
+                              ],
+                            ),
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5, top: 5),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                const TextSpan(
+                                    text: 'Release Date: ',
+                                    style:
+                                    TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(text: widget.fields["release_date"]),
+                              ],
+                            ),
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5, top: 5),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                const TextSpan(
+                                    text: 'Status: ',
+                                    style:
+                                    TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text: widget.fields["watched"] == "Yes"
+                                        ? "watched"
+                                        : "unwatched"),
+                              ],
+                            ),
+                          ),
+                        )),
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5, top: 5),
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                              children: <TextSpan>[
+                                const TextSpan(
+                                    text: 'Review:\n',
+                                    style:
+                                    TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(text: widget.fields["review"]),
+                              ],
+                            ),
+                          ),
+                        )),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(
+                                const Size.fromHeight(45)),
+                            backgroundColor:
+                            MaterialStateProperty.all(Colors.blue),
+                          ),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const MyWatchlistPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Back",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal),
+                          ),
                         ),
-                        
-                        children: [
-                          const TextSpan(text: 'Release Date: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: DateFormat.yMMMd('en_US').format(watchlist.fields.releaseDate)),
-
-                          const TextSpan(text: '\nRating: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: '${watchlist.fields.rating.toString()}/5'),
-
-                          const TextSpan(text: '\nStatus: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: watchlist.fields.watched ? 'watched' : 'not watched'),
-
-                          const TextSpan(text: '\nReview:\n', style: TextStyle(fontWeight: FontWeight.bold,)),
-                          TextSpan(text: watchlist.fields.review, style: const TextStyle(height: 0)),
-                        ],
                       ),
                     ),
                   ],
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: double.infinity,
-                    height: 40,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Back'),
-                    ),
-                  ),
-                )
-              ],
-            ),
+                )),
           )
-      );
+        ],
+      ),
+    );
   }
 }

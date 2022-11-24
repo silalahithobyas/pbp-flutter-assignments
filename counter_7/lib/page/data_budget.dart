@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:counter_7/main.dart';
-import 'package:counter_7/tambah_budget.dart';
+import 'package:counter_7/page/tambah_budget.dart';
 import 'package:counter_7/page/mywatchlistPage.dart';
+
 
 class DataBudgetPage extends StatefulWidget {
   const DataBudgetPage({super.key});
@@ -33,12 +33,12 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
                 padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
               ),
           ListTile(
-            title: const Text('Counter'),
+            title: const Text('counter_7'),
             onTap: () {
               // Routing menu ke halaman utama
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home Page',)),
+                MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Homepage',)),
               );
             },
           ),
@@ -65,10 +65,11 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
           ListTile(
             title: const Text('My Watchlist'),
             onTap: () {
-              // Routing menu ke halaman watchlist
+              // Route menu ke halaman My Watchlist
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchlistPage()),
+                MaterialPageRoute(
+                    builder: (context) => const MyWatchlistPage()),
               );
             },
           ),
