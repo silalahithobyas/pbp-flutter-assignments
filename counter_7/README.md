@@ -91,7 +91,7 @@ Namun pengambilan data JSON tanpa pembuatan model terlebih dahulu pastinya tidak
 3. By using the method GET, JSON akan ditangkap dan dibuat menjadi objek dari model yang telah dibuat
 4. Menampilkan data dibantu dengan FutureBuilder
 
-## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas!
 1. Add drawer My Watchlist pada navigator
 2. Membuat mywatchlist.dart yang memuat class Watchlist
 3. Mengintall dependensi http --> flutter pub add http
