@@ -70,3 +70,33 @@ Prinsip kerja navigator memiliki kemiripan dengan struktur data stack. Misalnya 
 1. Routing pada widget drawner
 2. Membuat form pada bagian body yang berisi textfield, dropdown, serta tombol submit di file tambah_budget
 3. Menampilkan data yang telah di input pada halaman data_budget
+
+
+# Tugas 9 - Integrasi Web Service pada Flutter
+
+## Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Bisa. Flutter mempunyai built-in function sebagai encoder dan decoder JSON yang disebut dengan 'dart:convert'. Flutter memiliki fungsi 'jsonDecode()' untuk decoding JSON dan mereturn 'Map<String, dynamic>'
+
+Namun pengambilan data JSON tanpa pembuatan model terlebih dahulu pastinya tidak lebih baik daripada jika dilakukan pembuatan model terlebih dahulu. Pembuatan Plain Old Dart Object (PODO) direkomendasikan sebelum mengambil data JSON dari network request. Barulah kemudian di parsing sebagai JSON array yang di simpan sebagai object model tersebut.
+
+## Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya!
+- Future Builder    = untuk pengambilan data snapshot terbaru dari interaksinya dengan Future
+- ListTile          = untuk menampilkan data
+- ListView          = untuk menampilkan data, biasanya digunakan dalam sebuah scrolling widget
+- Center, Row       = untuk mengatur tampilan 
+
+## Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter!
+1. Menambahkan http sebagai dependency pada path android/app/src/main/AndroidManifest.xml dengan menjalankan perintah 'flutter pub add http'
+2. Membuat model penampung data dari JSON
+3. By using the method GET, JSON akan ditangkap dan dibuat menjadi objek dari model yang telah dibuat
+4. Menampilkan data dibantu dengan FutureBuilder
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+1. Add drawer My Watchlist pada navigator
+2. Membuat mywatchlist.dart yang memuat class Watchlist
+3. Mengintall dependensi http --> flutter pub add http
+4. Membuat fetch function atau penangkap JSON
+5. Menampilkan data-data dari mywatchlist pada Tugas 3 lampau
+6. Menyambungkan tiap Watchlist ke details
+7. Menambahkan halaman details untuk setiap mywatchlist yang ada pada daftar tersebut. Halaman ini menampilkan judul, release date, rating, review, dan status (watched/unwatched). --> Membuat routing ketika judul watchlist ditekan ke halaman dari file yang akan menampilkan detail tiap-tiap film nya.
+8. Menambahkan tombol untuk kembali ke daftar mywatchlist --> membuat bottom Navigation bar sebagai tombol kembali ke menu awal
