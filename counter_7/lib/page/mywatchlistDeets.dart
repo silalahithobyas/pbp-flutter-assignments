@@ -126,7 +126,7 @@ class _DetailWatchlistPageState extends State<DetailWatchlistPage> {
                                     style:
                                     TextStyle(fontWeight: FontWeight.bold)),
                                 TextSpan(
-                                    text: "${widget.fields['rating']}/10"),
+                                    text: "${widget.fields['rating']}/5.0"),
                               ],
                             ),
                           ),
@@ -168,8 +168,8 @@ class _DetailWatchlistPageState extends State<DetailWatchlistPage> {
                                     TextStyle(fontWeight: FontWeight.bold)),
                                 TextSpan(
                                     text: widget.fields["watched"] == "Yes"
-                                        ? "watched"
-                                        : "unwatched"),
+                                        ? "Watched"
+                                        : "Unwatched"),
                               ],
                             ),
                           ),
